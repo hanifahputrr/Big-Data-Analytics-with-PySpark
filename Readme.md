@@ -48,14 +48,14 @@ Data diaggresikan berdasarkan tahun dan bulan.
 Pada dataset loyalitas pelanggan:
 Data dianalisis berdasarkan atribut demografis seperti pendidikan dan tingkat loyalitas.
 
-Tujuan:
-
-Memperkaya dataset dengan informasi baru untuk analisis yang lebih mendalam.
+Tujuan: Memperkaya dataset dengan informasi baru untuk analisis yang lebih mendalam.
+   
     '''
         aggregated_calendar_df = calendar_df.withColumn("start_of_the_year", year(col("date"))) \
                                             .withColumn("start_of_the_quarter", quarter(col("date"))) \
                                             .withColumn("start_of_the_month", month(col("date")))
     '''
+    
 **4. Visualisasi Data**
 --
 Langkah:
