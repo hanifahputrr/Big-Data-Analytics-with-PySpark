@@ -7,10 +7,7 @@ Membuat Spark Session: Sebagai entry point untuk menggunakan API PySpark.
 Tujuan:
 
 Menyiapkan lingkungan yang diperlukan untuk pemrosesan dan visualisasi data.
-    '''
-    from pyspark.sql import SparkSession
-    spark_session = SparkSession.builder.appName('customer_analysis').master('local').getOrCreate()
-    '''
+
 
 **2. Membaca dan Membersihkan Dataset**
 --
@@ -24,18 +21,6 @@ Tujuan:
 
 Memuat data mentah ke dalam Spark DataFrame.
 Melakukan pembersihan awal untuk mempersiapkan analisis.
-    '''
-        from pyspark.sql.types import *
-        schema = StructType([
-            StructField("_c0", StringType(), True),
-            StructField("lovalty_no", StringType(), True),
-            StructField("year", StringType(), True),
-            StructField("month", StringType(), True),
-            ...
-        ])
-        df_customer_flight_activity = spark_session.read.csv('/content/customer_flight_activity.csv', header=True, schema=schema)
-        df_customer_flight_activity = df_customer_flight_activity.drop("_c0")
-    '''
 
 **3. Transformasi Dataset**
 --
@@ -50,11 +35,6 @@ Data dianalisis berdasarkan atribut demografis seperti pendidikan dan tingkat lo
 
 Tujuan: Memperkaya dataset dengan informasi baru untuk analisis yang lebih mendalam.
    
-    '''
-        aggregated_calendar_df = calendar_df.withColumn("start_of_the_year", year(col("date"))) \
-                                            .withColumn("start_of_the_quarter", quarter(col("date"))) \
-                                            .withColumn("start_of_the_month", month(col("date")))
-    '''
     
 **4. Visualisasi Data**
 --
@@ -70,12 +50,6 @@ Bar Chart: Rata-rata gaji berdasarkan tingkat pendidikan.
 Tujuan:
 
 Memberikan insight visual yang mudah dipahami dari data.
-    '''
-        fig1 = px.bar(calendar_agg, x="Month", y="count", color="Year",
-                    title="Distribution of Events Over Time",
-                    labels={"count": "Event Count", "Month": "Month"})
-        fig1.show()
-    '''
 
 **5. Analisis dan Penyimpanan Visualisasi**
 --
